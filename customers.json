@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "first_name": "Aman",
+    "last_name": "Gupta",
+    "city": "Ahmedabad",
+    "company": "SublimeDataSystems"
+  },
+  {
+    "id": 2,
+    "first_name": "Animesh",
+    "last_name": "Mondal",
+    "city": "Burdwan",
+    "company": "ABC pvt ltd"
+  },
+  {
+    "id": 3,
+    "first_name": "Kunal",
+    "last_name": "Doe",
+    "city": "Burdwan",
+    "company": "ABC pvt ltd"
+  },
+  {
+    "first_name": "John",
+    "last_name": "Doe",
+    "city": "Burdwan",
+    "company": "JH Pv",
+    "id": 4
+  },
+  {
+    "first_name": "John",
+    "last_name": "Doe",
+    "city": "Gurgao",
+    "company": "ABC pvt ltd",
+    "id": 5
+  },
+  {
+    "first_name": "John22",
+    "last_name": "Doe",
+    "city": "Gurgao",
+    "company": "ABC pvt ltd",
+    "id": 6
+  }
+]
