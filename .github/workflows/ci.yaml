@@ -1,8 +1,5 @@
 name: "Deploy code changes to dockerhub"
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
     
 jobs:
