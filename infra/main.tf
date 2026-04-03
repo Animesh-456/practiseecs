@@ -270,6 +270,13 @@ terraform {
       version = "~> 6.0"
     }
   }
+
+  backend "s3" {
+    bucket = "my-terraform-state-bucket"
+    key    = "ecs-infra/terraform.tfstate"
+    region = "ap-south-1"
+    dynamodb_table = "state-lock-nodejs"
+  }
 }
 
 provider "aws" {

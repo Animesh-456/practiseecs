@@ -24,7 +24,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/practiseecs:latest
-
-        
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/practiseecs:sha-${{ github.sha }}
 
