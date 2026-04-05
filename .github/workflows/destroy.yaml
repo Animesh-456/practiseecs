@@ -20,6 +20,9 @@ jobs:
           aws-region: ap-south-1
           audience: sts.amazonaws.com
 
+      - name: "Setup Terraform"
+        uses: hashicorp/setup-terraform@v4
+
       - name: "Terraform Destroy"
         run: terraform destroy -auto-approve
         working-directory: ./infra
