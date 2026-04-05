@@ -264,18 +264,11 @@
 
 
 terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 6.0"
-    }
-  }
-
   backend "s3" {
-    bucket         = "practiseecs-tf-state-12345"
-    key            = "environments/practiseecs-tf-state.tfstate"
+    bucket         = "practiseecs-app-tf-state-12345"
+    key            = "environments/nodejs-app-prod.tfstate"
     region         = "ap-south-1"
-    dynamodb_table = "terraform-state-locks" # Correct option for state locking
+    dynamodb_table = "terraform-state-locks"  # Correct option for state locking
     encrypt        = true
   }
 }
