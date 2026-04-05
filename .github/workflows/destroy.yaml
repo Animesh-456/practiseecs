@@ -1,0 +1,25 @@
+name: "Destroy infrastructure on AWS"
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v6
+
+      - name: "Configure AWS credentials (OIDC)"
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.ROLE_ARN }}
+          aws-region: ap-south-1
+          audience: sts.amazonaws.com
+
+      - name: "Terraform Destroy"
+        run: terraform destroy -auto-approve
+        working-directory: ./infra
