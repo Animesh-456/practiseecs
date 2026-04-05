@@ -39,7 +39,6 @@ jobs:
       - name: "Download current task definition"
         run: |
          aws ecs describe-task-definition \
-          --cluster practise-ecs-cluster \
           --task-definition practise-ecs-task-def \
           --query 'taskDefinition' > task-def.json
 
