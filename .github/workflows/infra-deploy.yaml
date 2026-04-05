@@ -1,0 +1,29 @@
+name: "Deploy infrastructure changes to AWS"
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v6
+
+      - name: "Configure AWS credentials (OIDC)"
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.ROLE_ARN }}
+          aws-region: ap-south-1
+
+      - name: "Setup Terraform"
+        uses: hashicorp/setup-terraform@v4
+    
+      - name: "Terraform Init"
+        run: terraform init
+
+      - name: "Terraform Plan"
+        run: terraform plan
+
+      - name: "Terraform Apply"
+        run: terraform apply -auto-approve

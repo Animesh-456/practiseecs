@@ -25,4 +25,33 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/practiseecs:sha-${{ github.sha }}
+      
+      - name: "Configure AWS credentials (OIDC)"
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.ROLE_ARN }}
+          aws-region: ap-south-1
 
+      - name: "Download current task definition"
+        run: |
+         aws ecs describe-task-definition \
+          --cluster practise-ecs-cluster \
+          --task-definition practise-ecs-task-def \
+          --query 'taskDefinition' > task-def.json
+
+      - name: "Update task definition with new image"
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-def.json
+          container-name: practiseecs
+          image: ${{ secrets.DOCKERHUB_USERNAME }}/practiseecs:sha-${{ github.sha }}
+
+
+      - name: "Deploy AWS ECS task definition"
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          cluster: my-ecs-cluster
+          service: practise-ecs-service
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+      
