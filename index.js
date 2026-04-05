@@ -9,7 +9,7 @@ const customersFilePath = path.join(__dirname, 'customers.json');
 app.use(express.json());
 
 app.get('/health', (req, res) => {
-   res.status(200).json({ message: 'Health OK' });
+   res.status(200).json({ message: 'Health is OK' });
 })
 
 // List API with search by first_name, last_name, and city with pagination
