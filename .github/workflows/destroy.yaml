@@ -28,5 +28,5 @@ jobs:
         working-directory: ./infra
 
       - name: "Terraform Destroy"
-        run: terraform destroy -auto-approve tfplan
+        run: terraform destroy -auto-approve
         working-directory: ./infra
