@@ -1,7 +1,12 @@
 name: "Deploy code changes to dockerhub"
 on:
-  workflow_dispatch:
-    
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'infra/**'
+      - '.github/workflows/destroy.yaml'
+      - '.github/workflows/infra-deploy.yaml'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,7 +44,7 @@ jobs:
       - name: "Download current task definition"
         run: |
          aws ecs describe-task-definition \
-          --task-definition practise-ecs-task-def \
+          --task-definition my-node-app \
           --query 'taskDefinition' > task-def.json
 
       - name: "Update task definition with new image"
@@ -47,7 +52,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-def.json
-          container-name: practiseecs
+          container-name: node-app
           image: ${{ secrets.DOCKERHUB_USERNAME }}/practiseecs:sha-${{ github.sha }}
 
 
@@ -55,6 +60,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           cluster: my-ecs-cluster
-          service: practise-ecs-service
+          service: node-app-service
           task-definition: ${{ steps.task-def.outputs.task-definition }}
+          force-new-deployment: true
       
