@@ -1,4 +1,5 @@
 const express = require('express');
+const client = require('prom-client');
 const app = express();
 const PORT = 4000;
 const customers = require('./customers.json');
@@ -6,11 +7,18 @@ const fs = require('fs');
 const path = require('path');
 const customersFilePath = path.join(__dirname, 'customers.json');
 
+
 app.use(express.json());
 
 app.get('/health', (req, res) => {
-   res.status(200).json({ message: 'Health is OK' });
+   res.status(200).json({ message: 'Health is running OK' });
 })
+
+// Expose metrics endpoint
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', client.register.contentType);
+  res.end(await client.register.metrics());
+});
 
 // List API with search by first_name, last_name, and city with pagination
 app.get('/api/customers', (req, res) => {
