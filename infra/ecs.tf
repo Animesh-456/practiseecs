@@ -19,6 +19,12 @@ resource "aws_ecs_task_definition" "app" {
       image     = "anim45/practiseecs:latest"
       essential = true
 
+      dockerLabels = {
+        PROMETHEUS_SCRAPE = "true"
+        PROMETHEUS_PORT   = "9090"
+        PROMETHEUS_PATH   = "/metrics"
+      }
+
       portMappings = [{
         containerPort = 4000
         hostPort      = 4000
