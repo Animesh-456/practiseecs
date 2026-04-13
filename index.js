@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const customersFilePath = path.join(__dirname, 'customers.json');
 
+client.collectDefaultMetrics();
 
 app.use(express.json());
 
