@@ -441,7 +441,7 @@ This project demonstrates:
 
 ---
 
-## � Resume Highlights
+## Highlights
 
 This project showcases essential cloud-native and DevOps skills:
 
