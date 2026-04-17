@@ -353,10 +353,7 @@ journalctl -u prometheus -f
 ### 7. Github Actions Pipeline - Overview
 ![Grafana Overview](./screenshots/Screenshot%202026-04-13%20202329.png)
 
-### 8. Grafana Dashboard - Metrics
-![Grafana Metrics](./screenshots/Screenshot%202026-04-13%20202401.png)
-
-### 9. Github actions workflows - Overview
+### 8. Github actions workflows - Overview
 ![Monitoring Config](./screenshots/Screenshot%202026-04-13%20202429.png)
 
 ---
